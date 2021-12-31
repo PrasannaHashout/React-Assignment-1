@@ -1,0 +1,70 @@
+this keyword in React and JavaScript
+
+When this keyword is used inside a function it refers to the object value inside that function
+
+in this case the this keyword is the object itself
+
+For example : consider the function as shown below 
+
+function details(firstName, lastName) {
+	this.person_fname = firstName;
+	this.person_lname = lastName;
+
+	this.display = function() {
+		console.log(`Name: ${this.person_fname} ${this.person_lname}`);
+console.log(this);
+}
+}
+
+let person1 = new details("Prasanna", "Ganapathi S");
+person1.display();
+
+
+in the above function, this keyword refers to the value of the newly created instance
+
+three functions to manipulate this:
+1. call
+2. apply
+3. bind
+
+Method 1. call - we use function_name.call()
+
+Example: 
+
+let obj = {num: 4};
+let valuesAddition = function(a,b,c) {
+	console.log(this);
+	return this.num + a + b + c;
+}
+
+valuesAddition.call(obj, 4, 4, 4);
+
+by using the call function we can refer the value of the obj num which is used in the valuesAddition function
+
+Method 2. apply
+
+the apply method is similar to call method except that the second parameter in apply method is an array
+
+Example:
+
+ let arr = [1,5,7];
+ let obj = {num:4};
+ let valuesAddition = function(a,b,c) {
+	return this.obj + a + b + c;
+ }
+
+valuesAddition.apply(obj,arr);
+
+in the above function the values in arr gets assigned  to a,b,c in the function valuesAdditon
+
+Method 3. bind
+
+the bind method returns a function
+
+let obj = {num:4};
+let valuesAddition = function(a,b,c) {
+	return this.num + a + b + c;
+}
+
+let value = valuesAddition.bind(obj,2,2,2);
+value();
